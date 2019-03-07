@@ -1,8 +1,10 @@
 package com.stackroute.keepnote.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.stackroute.keepnote.model.Note;
+import org.springframework.stereotype.Repository;
 
 /*
  * This class contains the code for data storage interactions and methods 
@@ -13,21 +15,24 @@ import com.stackroute.keepnote.model.Note;
 public class NoteRepository {
 
 	/* Declare a variable called "list" to store all the notes. */
+	List<Note> list;
 
 	public NoteRepository() {
 
 		/* Initialize the variable using proper data type */
+		list = new ArrayList<>();
 	}
 
 	/* This method should return all the notes in the list */
 
 	public List<Note> getList() {
-		return null;
+		return list;
 	}
 
 	/* This method should set the list variable with new list of notes */
 
 	public void setList(List<Note> list) {
+		this.list=list;
 
 	}
 
@@ -37,6 +42,7 @@ public class NoteRepository {
 	 */
 
 	public void addNote(Note note) {
+		this.list.add(note);
 
 	}
 
@@ -44,6 +50,12 @@ public class NoteRepository {
 
 	public boolean deleteNote(int noteId) {
 		/* Use list iterator to find matching note id and remove it from the list */
+		for(Note note:list){
+			if(note.getNoteId()==noteId){
+				list.remove(note);
+				return true;
+			}
+		}
 		return false;
 		
 		
@@ -52,7 +64,8 @@ public class NoteRepository {
 	/* This method should return the list of notes */
 
 	public List<Note> getAllNotes() {
-		return null;
+
+		return list;
 	}
 
 	/*
@@ -62,6 +75,13 @@ public class NoteRepository {
 	 */
 
 	public boolean exists(int noteId) {
+
+		for(Note note:list){
+			if(note.getNoteId()==noteId){
+				return true;
+			}
+		}
+
 		return false;
 	}
 }
