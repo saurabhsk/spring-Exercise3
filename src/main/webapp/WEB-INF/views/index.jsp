@@ -64,7 +64,7 @@
 		 <form action="/saveNote">
            <table id="tab2">
 
-		     <tr><td> Note_ID</td> <td><input type="number" name="noteId" required></td></tr>
+		     <tr><td> Note_ID</td> <td><input type="number" name="noteId" required min="1" pattern="[1-9]"></td></tr>
 		     <tr><td> Title</td> <td><input type = "text" name="noteTitle" required></td></tr>
 		     <tr><td> Content</td> <td><input type ="text" name="noteContent" required></td></tr>
 		     <tr><td> Status</td> <td><input type = "text" name = "noteStatus" required></td></tr><br/><br/>
@@ -73,6 +73,7 @@
 		 </form></center>
 
 	<!-- display all existing notes in a tabular structure with Id, Title,Content,Status, Created Date and Action -->
+    <c:if test="${list.size() >0}">
     <h1>Records</h1>
     <center>
 	<table id="tab1">
@@ -95,5 +96,6 @@
       </c:forEach>
 	</table>
 	</center>
+	</c:if>
 </body>
 </html>
